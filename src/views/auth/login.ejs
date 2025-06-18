@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - MovieApp</title>
-    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/main.css">
 </head>
 
 <body>
     <div class="container">
         <h1>MovieApp</h1>
 
-        <form action="/auth/login" method="POST">
+        <form action="/login" method="POST">
             <div class="input-group">
                 <input type="email" id="email" name="email" required placeholder="Email">
             </div>
@@ -24,8 +24,8 @@
             <button type="submit" class="btn">Log in</button>
         </form>
 
-        <div class="signup-link">
-            ¿No tienes cuenta? <a href="/auth/signup">Sign up</a>
+        <div class="auth-link">
+            ¿No tienes cuenta? <a href="/signup">Sign up</a>
         </div>
     </div>
 </body>

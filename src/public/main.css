@@ -40,10 +40,13 @@ h1 {
 /* Botón de registro */
 .btn {
     width: 100%;
-    padding: 10px;
+    padding: 1em;
+    margin-bottom: 1em;
     background-color: #0066cc;
     color: white;
     border: none;
     border-radius: 3px;
     cursor: pointer;
 }
+
+/* Redirección */
