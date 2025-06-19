@@ -11,8 +11,7 @@
 <body>
     <div class="container">
         <h1>MovieApp</h1>
-
-        <form action="/login" method="POST">
+        <form action="/login" method="POST" novalidate>
             <div class="input-group">
                 <input type="email" id="email" name="email" required placeholder="Email">
             </div>
@@ -20,6 +19,12 @@
             <div class="input-group">
                 <input type="password" id="password" name="password" required placeholder="Contraseña">
             </div>
+
+            <% if (errorMsg) { %>
+                <p>
+                    <%= errorMsg %>
+                </p>
+            <% } %>
 
             <button type="submit" class="btn">Log in</button>
         </form>

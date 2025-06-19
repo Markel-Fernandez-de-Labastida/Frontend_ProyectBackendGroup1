@@ -22,15 +22,21 @@ const consultFetch = async (url, method = 'GET', body = {}, header = {}) => {
 
     try {
         const answer = await fetch(url, option);
+        const data = await answer.json();
         if (!answer.ok) {
+            console.log('STATUS:', data)
             throw ({
                 ok: false,
-                msg: 'Respuesta no válida.'
+                status: answer.status,
+                msg: data.msg
             })
         }
-        return await answer.json();
+        return data;
     } catch (error) {
-        console.log(error);
+        console.log('ERROR EN FETCH', error);
+        if (error.msg) {
+            throw error;
+        }
         throw ({
             ok: false,
             msg: 'Error en la consulta.'

@@ -30,6 +30,7 @@ app.use(cookieParser());
 // RUTAS
 app.use('/', authRoutes);
 
+
 app.listen(port, () => {
     console.log(`Server on port ${port}`);
 })

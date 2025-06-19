@@ -12,7 +12,10 @@
     <div class="container">
         <h1>MovieApp</h1>
 
-        <form action="/auth/signup" method="POST">
+        <form action="/signed" method="POST" novalidate>
+            <div class="input-group">
+                <input type="name" id="name" name="name" required placeholder="Nombre">
+            </div>
             <div class="input-group">
                 <input type="email" id="email" name="email" required placeholder="Email">
             </div>
