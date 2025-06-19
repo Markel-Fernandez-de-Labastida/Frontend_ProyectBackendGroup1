@@ -29,6 +29,7 @@ app.use(cookieParser());
 
 // RUTAS
 app.use('/', authRoutes);
+app.use('/prueba', require('./routes/prueba.routes'));
 
 
 app.listen(port, () => {
