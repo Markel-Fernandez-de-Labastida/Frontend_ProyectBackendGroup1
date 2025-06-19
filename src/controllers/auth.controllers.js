@@ -3,7 +3,7 @@ const { consultFetch } = require('../utils/consultFetch')
 const loginView = (req, res) => {
     res.render('auth/login', {
         errorMsg: ''
-        })
+    })
 }
 
 const loginSend = async (req, res) => {
@@ -16,7 +16,7 @@ const loginSend = async (req, res) => {
                 email,
                 password
             })
-        console.log('ANSWER', answer)
+        //console.log('ANSWER', answer)
         res.cookie('authToken', answer.token, {
             httpOnly: true, // la cookie solo es accesible en el servidor
             maxAge: 3600000 // expira en 1 hora
@@ -28,7 +28,7 @@ const loginSend = async (req, res) => {
             return res.redirect('/');
         }
     } catch (error) {
-        console.log('ERROR en LOGIN:', error)
+        console.log(error)
         if (error.status === 401) {
             return res.render('auth/login', {
                 errorMsg: error.msg,
@@ -38,12 +38,10 @@ const loginSend = async (req, res) => {
                 errorMsg: error.msg,
             });
         } else if (error.status === 400) {
-            console.log('ERROR EN 400', error)
             return res.render('auth/login', {
                 errorMsg: error.msg,
             });
         } else {
-            console.log('ERROR EN eLSE', error)
             return res.render('auth/login', {
                 errorMsg: error.msg,
             });
@@ -53,7 +51,9 @@ const loginSend = async (req, res) => {
 
 
 const signupView = (req, res) => {
-    res.render('auth/signup')
+    res.render('auth/signup', {
+        errorMsg: ''
+    })
 }
 
 const signupSend = async (req, res) => {
@@ -71,24 +71,26 @@ const signupSend = async (req, res) => {
             httpOnly: true, // la cookie solo es accesible en el servidor
             maxAge: 3600000 // expira en 1 hora
         });
-        // res.send('Token almacenado en cookie')
-        // console.log(answer.savedUser[0])
-        const role = answer.savedUser[0].role_id;
-        if (role === 1) {
-            res.redirect('/');
-        } else if (role === 2) {
-            res.redirect('/');
-        }
-        // return res.status(200).json({
-        //     ok: true,
-        //     answer
-        // })
+        res.redirect('/');
     } catch (error) {
         console.log(error)
-        return res.status(500).json({
-            ok: false,
-            msg: 'Error en el registro'
-        })
+        if (error.status === 401) {
+            return res.render('auth/signup', {
+                errorMsg: error.msg,
+            });
+        } else if (error.status === 403) {
+            return res.render('auth/login', {
+                errorMsg: error.msg,
+            });
+        } else if (error.status === 400) {
+            return res.render('auth/signup', {
+                errorMsg: error.msg,
+            });
+        } else {
+            return res.render('auth/signup', {
+                errorMsg: error.msg,
+            });
+        }
     }
 }
 

@@ -13,7 +13,7 @@ const router = Router();
 router.get('/', loginView);
 router.post('/login', loginSend);
 router.get('/signup', signupView);
-router.post('/signed', signupSend);
+router.post('/register', signupSend);
 
 router.post('/logout', logOutUser)
 

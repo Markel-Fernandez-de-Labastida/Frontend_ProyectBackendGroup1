@@ -12,7 +12,7 @@
     <div class="container">
         <h1>MovieApp</h1>
 
-        <form action="/signed" method="POST" novalidate>
+        <form action="/register" method="POST" novalidate>
             <div class="input-group">
                 <input type="name" id="name" name="name" required placeholder="Nombre">
             </div>
@@ -23,6 +23,12 @@
             <div class="input-group">
                 <input type="password" id="password" name="password" required placeholder="Contraseña">
             </div>
+
+            <% if (errorMsg) { %>
+                <p>
+                    <%= errorMsg %>
+                </p>
+            <% } %>
 
             <button type="submit" class="btn">Sign up</button>
 
