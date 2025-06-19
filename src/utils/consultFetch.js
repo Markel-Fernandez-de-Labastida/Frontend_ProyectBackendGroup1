@@ -19,7 +19,6 @@ const consultFetch = async (url, method = 'GET', body = {}, header = {}) => {
             }
         }
     }
-
     try {
         const answer = await fetch(url, option);
         const data = await answer.json();
@@ -33,7 +32,7 @@ const consultFetch = async (url, method = 'GET', body = {}, header = {}) => {
         }
         return data;
     } catch (error) {
-        console.log('ERROR EN FETCH', error);
+        console.log(error);
         if (error.msg) {
             throw error;
         }
@@ -43,7 +42,6 @@ const consultFetch = async (url, method = 'GET', body = {}, header = {}) => {
         })
     }
 }
-
 
 module.exports = {
     consultFetch
