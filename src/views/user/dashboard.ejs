@@ -1,11 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MovieApp</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
+
 <body>
-    <h1>Entra en /dashboard</h1>
+    <div class="container">
+        <div class="brand">MovieApp</div>
+
+        <h1>Log in</h1>
+
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <input type="text" name="username" placeholder="Usuario" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn">Iniciar sesión</button>
+        </form>
+
+        <% if (isLoggedIn) { %>
+            <h2>Mis películas</h2>
+            <form action="/search" method="GET">
+                <div class="input-group">
+                    <input type="text" name="query" placeholder="Buscar una película">
+                </div>
+                <button type="submit" class="btn">Buscar</button>
+            </form>
+            <% } %>
+    </div>
 </body>
+
 </html>
