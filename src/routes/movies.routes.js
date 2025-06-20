@@ -7,6 +7,7 @@ const {
   deleteMovie,
   updateMovie,
   getMovieId,
+  createMovie,
 } = require("../controllers/movies.controllers");
 
 const router = Router();
@@ -14,7 +15,8 @@ const router = Router();
 // router.post("/dashboard", getAllMovies);
 router.get("/searchId", getMovieId);
 router.get("/search", getMovieTitle);
-router.post("/createMovie", addMovie);
+router.get('/createmovie', createMovie);
+router.post("/createmovie", addMovie);
 router.put("/editMovie/:id", updateMovie);
 router.delete("/deleteFavorites", deleteFavorites);
 router.delete("/removeMovie", deleteMovie);
