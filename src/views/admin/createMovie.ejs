@@ -11,37 +11,32 @@
 <body>
     <div class="container-movies">
         <h1>Crear una película</h1>
-        <form action="/admin/createmovie" method="POST" novalidate>
+        <form action="/admin/createmovie" method="POST" enctype="multipart/form-data" novalidate>
             <div class="input-group">
                 <input type="text" id="title" name="title" required placeholder="Título">
             </div>
-
             <div class="input-group">
                 <input type="text" id="director" name="director" required placeholder="Director/a">
             </div>
-
             <div class="input-group">
-                <input type="number" id="year_movie" name="year_movie" required placeholder="Año">
+                <input type="text" id="year_movie" name="year_movie" required placeholder="Año">
             </div>
-
-            <div class="input-group">
-                <input type="text" id="genre" name="genre" required placeholder="Género">
-            </div>
-
+            <!-- <div class="input-group">
+                <input type="number" id="genre_id" name="genre_id" required placeholder="Género">
+            </div> -->
             <div class="input-group">
                 <input type="text" id="duration" name="duration" required placeholder="Duración">
             </div>
-
             <div class="input-group">
-                <textarea id="synopsis" name="synopsis" required class="input-synopsys" placeholder="Sinopsis"></textarea>
+                <textarea id="synopsis" name="synopsis" required class="input-synopsys"
+                    placeholder="Sinopsis"></textarea>
             </div>
-
             <div class="input-group">
-                <input type="file" id="image_url" name="image_url" required>
+                <input type="file" id="image_url" name="file" required>
             </div>
-
             <button type="submit" class="btn">Crear película</button>
         </form>
+
     </div>
 </body>
 

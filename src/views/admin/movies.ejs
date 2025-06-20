@@ -1,11 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movies</title>
+    <link rel="stylesheet" href="/main.css">
 </head>
+
 <body>
-    <h1>Entra en /movies</h1>
+    <!-- <section>
+        <h1>Mis películas</h1>
+
+        <a href="/prueba/createMovie" class="btn">Crear película</a>
+
+        <article class="film-card">
+            <div>
+                <img src="image_url" class="card-image">
+            </div>
+
+            <div class="flex">
+                <ul>
+                    <li>
+                        <
+                    </li>
+                    <li>
+                        <
+                    </li>
+                    <li>
+                        <
+                    </li>
+                    <li>
+                        <
+                    </li>
+                    <li class="synopsis-overflow">
+                        <
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+    </section> -->
+    <section>
+        <h1>Mis películas</h1>
+        <a href="/admin/createMovie" class="btn">Crear película</a>
+
+        <!-- Aquí empieza la iteración sobre las películas -->
+         
+        <% movies.forEach(movie => { %>
+            <% console.log(movie); %>
+            <article class="film-card">
+                <div>
+                    <img src="<%= movie.image_url %>" class="card-image">
+                </div>
+                <div class="flex">
+                    <ul>
+                        <li><%= movie.title %></li>
+                        <li><%= movie.duration %></li>
+                        <li><%= movie.year_movie %></li>
+                        <li><%= movie.director %></li>
+                        <li class="synopsis-overflow"><%= movie.synopsis %></li>
+                    </ul>
+                </div>
+            </article>
+        <% }) %>
+    </section>
 </body>
+
 </html>

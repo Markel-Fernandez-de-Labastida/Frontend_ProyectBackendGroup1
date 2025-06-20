@@ -1,23 +1,32 @@
 const { consultFetch } = require("../utils/consultFetch");
 
-const createMovie = (req, res) => {
+const createMovieView = (req, res) => {
     res.render('admin/createMovie')
 }
+
 
 const getAllMovies = async (req, res) => {
   //recoger token
   try {
     const response = await consultFetch(
       `http://localhost:3000/api/v1/movies/getAllMovies`,
-      "POST",
-      {
+      /* {
         id_movie,
-      },
+      }, */
       {
         //  auten.......:token,
       }
     );
-  } catch (error) {}
+    console.log('RESPONSE:', response);
+    if(response.ok) {
+      res.render('admin/movies', {
+        movies: response.data
+      })
+    }
+  } catch (error) {
+    console.log('Error en getAllMovies:', error);
+    res.status(500).send('Error al obtener las películas');
+  }
 };
 
 const getMovieId = async (req, res) => {
@@ -78,10 +87,8 @@ const addMovie = async (req, res) => {
     synopsis,
     image_url,
   } = req.body;
-  console.log('AddMovie inicio', req.body)
   try {
     //const body = { title,  };
-    console.log('AddMovie fetch')
     const response = await consultFetch(
       `${urlApiBase}/api/v1/movies/createMovie`,
       'POST',
@@ -95,7 +102,6 @@ const addMovie = async (req, res) => {
       image_url
     }
     );
-    console.log("addMovie: ", response);
     //return response;
     res.redirect('/admin/createmovie');
   } catch (error) {
@@ -186,7 +192,7 @@ const deleteFavorites = async (req, res) => {
 };
 
 module.exports = {
-  createMovie,
+  createMovieView,
   getAllMovies,
   getMovieId,
   getMovieTitle,
