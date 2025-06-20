@@ -1,0 +1,83 @@
+.header {
+    background-color: #2C3E50;
+    color: white;
+    padding: 15px 0;
+}
+
+.header-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    margin: 0;
+}
+
+/* Estilos del botón hamburguesa */
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: none;
+    /* Oculta en pantallas grandes */
+}
+
+.hamburger-line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+}
+
+/* Estilos del menú de navegación */
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-menu a:hover {
+    text-decoration: underline;
+}
+
+/* Versión para móviles */
+@media (max-width: 700px) {
+    .hamburger-btn {
+        display: block;
+        /* Muestra el botón en móviles */
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: 0;
+        background-color: #2C3E50;
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        display: none;
+    }
+
+    .nav-menu.show-menu {
+        display: block;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

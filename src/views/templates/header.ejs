@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie App</title>
-    <link rel="stylesheet" href="../../public/main.css">
+    <title>MovieApp</title>
+    <link rel="stylesheet" href="/header.css">
 </head>
-<header>
 
-</header>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">MovieApp</h1>
+            <!-- Botón Hamburguesa -->
+            <button class="hamburger-btn" onclick="toggleMenu()">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </button>
+            <!-- Menú de Navegación -->
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/search">Buscador</a></li>
+                    <li><a href="/my-movies">Mis películas</a></li>
+                    <li><a href="/logout">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script>
+        // Función simple para mostrar/ocultar el menú
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('show-menu');
+        }
+    </script>
+</body>
+
+</html>

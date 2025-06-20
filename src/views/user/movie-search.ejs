@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieApp - Búsqueda</title>
+    <link rel="stylesheet" href="main.css"> <!-- CSS original sin cambios -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Título de la aplicación -->
+        <div class="brand">MovieApp</div>
+
+        <!-- Formulario de búsqueda -->
+        <form action="/search" method="GET" class="search-form">
+            <div class="search-container">
+                <div class="input-group search-input">
+                    <input type="text" name="query" placeholder="Nombre de la película"
+                        value="<%= searchQuery || '' %>">
+                </div>
+                <button type="submit" class="btn search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- Resultado de búsqueda -->
+        <% if (movieResults) { %>
+            <div class="movie-card">
+                <img src="<%= movieResults.poster || 'placeholder.jpg' %>" alt="<%= movieResults.title %>"
+                    class="movie-poster">
+                <h2 class="movie-title">
+                    <%= movieResults.title %>
+                </h2>
+            </div>
+            <% } else { %>
+                <div class="movie-card">
+                    <img src="placeholder.jpg" alt="Película buscada" class="movie-poster">
+                    <h2 class="movie-title">Película buscada</h2>
+                </div>
+                <% } %>
+    </div>
+</body>
+
+</html>
