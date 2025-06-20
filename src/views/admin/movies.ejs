@@ -9,10 +9,37 @@
 </head>
 
 <body>
-    <section class="container">
+    <section>
         <h1>Mis películas</h1>
-        <a href="/createMovie" class="btn">Crear película</a>
-        
+
+        <a href="/prueba/createMovie" class="btn">Crear película</a>
+
+        <article class="film-card">
+            <!-- <div>
+                <img src="<%= image_url%>" class="card-image">
+            </div> -->
+
+            <div class="flex">
+                <ul>
+                    <li>
+                        <%=title%>
+                    </li>
+                    <li>
+                        <%=duration%>
+                    </li>
+                    <li>
+                        <%=year_movie%>
+                    </li>
+                    <li>
+                        <%=director%>
+                    </li>
+                    <li class="synopsis-overflow">
+                        <%=synopsis%>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
     </section>
 </body>
 
