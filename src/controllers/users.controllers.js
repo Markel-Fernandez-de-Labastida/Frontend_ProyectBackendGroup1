@@ -1,5 +1,9 @@
 const { consultFetch } = require("../utils/consultFetch");
 
+const dashboardView = (req, res) => {
+  res.render('user/dashboard')
+}
+
 const addFavorite = async (req, res) => {
   const urlApiBase = process.env.URL_API_BASE;
   try {
@@ -39,6 +43,7 @@ const getFavorite = async (req, res) => {
 };
 
 module.exports = {
+  dashboardView,
   addFavorite,
   getFavorite,
 };

@@ -9,44 +9,11 @@
 </head>
 
 <body>
-    <!-- <section>
-        <h1>Mis películas</h1>
-
-        <a href="/prueba/createMovie" class="btn">Crear película</a>
-
-        <article class="film-card">
-            <div>
-                <img src="image_url" class="card-image">
-            </div>
-
-            <div class="flex">
-                <ul>
-                    <li>
-                        <
-                    </li>
-                    <li>
-                        <
-                    </li>
-                    <li>
-                        <
-                    </li>
-                    <li>
-                        <
-                    </li>
-                    <li class="synopsis-overflow">
-                        <
-                    </li>
-                </ul>
-            </div>
-        </article>
-
-    </section> -->
     <section>
         <h1>Mis películas</h1>
         <a href="/admin/createMovie" class="btn">Crear película</a>
          
         <% movies.forEach(movie => { %>
-            <% console.log(movie); %>
             <article class="film-card">
                 <div>
                     <img src="<%= movie.image_url %>" class="card-image">
@@ -60,6 +27,13 @@
                         <li class="synopsis-overflow"><%= movie.synopsis %></li>
                     </ul>
                 </div>
+                <div class="btn-group">
+            <a href="/admin/editMovie/<%= movie.id_movie %>" class="btn">Editar</a>
+            <form action="/admin/removeMovie" method="POST">
+                <input type="hidden" name="id_movie" value="<%= movie.id_movie %>">
+                <button type="submit" class="btn">Eliminar</button>
+            </form>
+        </div>
             </article>
         <% }) %>
     </section>

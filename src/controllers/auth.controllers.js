@@ -26,9 +26,9 @@ const loginSend = async (req, res) => {
     });
     const role = answer.user.role_id;
     if (role === 1) {
-      return res.redirect("/");
+      return res.redirect("/admin/movies");
     } else if (role === 2) {
-      return res.redirect("/");
+      return res.redirect("/user/dashboard");
     }
   } catch (error) {
     console.log(error);
@@ -76,7 +76,7 @@ const signupSend = async (req, res) => {
       httpOnly: true, // la cookie solo es accesible en el servidor
       maxAge: 3600000, // expira en 1 hora
     });
-    res.redirect("/");
+    res.redirect("/user/dashboard");
   } catch (error) {
     console.log(error);
     if (error.status === 401) {

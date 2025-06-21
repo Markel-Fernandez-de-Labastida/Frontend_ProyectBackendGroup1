@@ -5,6 +5,7 @@ require("dotenv").config();
 
 const authRoutes = require("./routes/auth.routes");
 const movieRoutes = require("./routes/movies.routes");
+const userRoutes = require("./routes/users.routes");
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 //Cors
@@ -27,6 +28,7 @@ app.use(cookieParser());
 // RUTAS
 app.use("/", authRoutes);
 app.use("/admin", movieRoutes);
+app.use('/user', userRoutes);
 
 app.listen(port, () => {
   console.log(`Server on port ${port}`);

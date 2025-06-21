@@ -4,6 +4,30 @@ const createMovieView = (req, res) => {
     res.render('admin/createMovie')
 }
 
+const editMovieView = async (req, res) => {
+  const {id} = req.params;
+  console.log('REQ PARAMS EDIT MOVIE:', id)
+  try {
+    const response = await consultFetch('http://localhost:3000/api/v1/movies/searchId',
+      'POST',
+      {
+        id_movie: id
+      }
+    );
+    console.log('RESPONSE EDIT MOVIE:', response.data)
+    if(response.ok) {
+      res.render('admin/editMovie', {
+        movie: response.data,
+      })
+    } else {
+      res.status(404).send("Película no encontrada");
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Error al obtener los datos de la película");
+  }
+}
+
 
 const getAllMovies = async (req, res) => {
   //recoger token
@@ -160,17 +184,23 @@ const updateMovie = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
   const urlApiBase = process.env.URL_API_BASE;
+  console.log('BODY RECIBIDO:', req.body);
   const { id_movie } = req.body;
   try {
     const response = await consultFetch(
       `${urlApiBase}/api/v1/movies/removeMovie`,
-      `DELETE`,
-      id_movie
+      'DELETE',
+      {
+        id: id_movie
+      }
     );
     console.log("deleteMovie: ", response);
-    //return response;
+    if (response.ok) {
+      res.redirect('/admin/movies')
+    }
   } catch (error) {
-    return error;
+    console.log('ERROR REMOVE MOVIE:', error);
+    return error
   }
 };
 
@@ -193,6 +223,7 @@ const deleteFavorites = async (req, res) => {
 
 module.exports = {
   createMovieView,
+  editMovieView,
   getAllMovies,
   getMovieId,
   getMovieTitle,

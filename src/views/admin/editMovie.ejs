@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar una película</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <div class="container-movies">
+        <h1>Editar una película</h1>
+        <form action="/sendEditMovie" method="POST" novalidate>
+            <div>
+                <input type="hidden" id="id_movie" name="id_movie" value="<%=movie.id_movie%>" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="title" name="title" value="<%=movie.title%>" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="director" name="director" value="<%=movie.director%>" required>
+            </div>
+
+            <div class="input-group">
+                <input type="number" id="year_movie" name="year_movie" value="<%=movie.year_movie%>" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="name_genre" name="name_genre" value="<%=movie.name_genre%>" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="duration" name="duration" value="<%=movie.duration%>" required>
+            </div>
+
+            <div class="input-group">
+                <textarea id="synopsis" name="synopsis" class="input-synopsys" required><%=movie.synopsis%></textarea>
+            </div>
+
+            <div class="input-group">
+                <input type="file" id="image_url" name="image_url" value="<%=movie.image_url%>"required>
+            </div>
+
+            <button type="submit" class="btn">Editar película</button>
+        </form>
+    </div>
+</body>
+
+</html>
