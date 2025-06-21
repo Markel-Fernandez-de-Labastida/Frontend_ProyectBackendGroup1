@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieApp</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">MovieApp</h1>
+
+            <button class="hamburger-btn" onclick="toggleMenu()">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </button>
+                <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="/user/dasboard">Inicio</a></li>
+                    <li><a href="/user/search">Buscador</a></li>
+                    <li><a href="/user/my-movies">Mis películas</a></li>
+                    <li><a href="/logout">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('show-menu');
+        }
+    </script>
+</body>
+
+</html>

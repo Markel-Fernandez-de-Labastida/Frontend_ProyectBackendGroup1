@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+    <main>
+        <section class="detail-container">
+            <h1><%= movie.title %></h1>
+            <ul>
+                <li><b>Director/a:</b> <%= movie.director %></li>
+                <li><b>Duración:</b> <%= movie.duration %></li>
+                <li><b>Año:</b> <%= movie.year_movie %></li>
+                <li><b>Género:</b> <%= movie.genre %></li>
+                <li><b>Sinopsis:</b> <%= movie.synopsis %></li>
+            </ul>
+            <div class="movie-image">
+                <img src="<%= movie.image_url%>">
+            </div>
+        </section>
+    </main>
+
+</body>

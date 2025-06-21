@@ -4,16 +4,18 @@ const {
   getFavorite,
   dashboardView,
   getMovieTitle,
-  searchView
+  searchView,
+  movieDetailView
 } = require("../controllers/users.controllers");
 
 const router = Router();
 
 router.get('/dashboard', dashboardView);
 router.get('/search', searchView)
-router.post("/search", getMovieTitle);
+router.post('/search', getMovieTitle);
+router.get('/search/:id', movieDetailView)
 
-router.post(`/addFavorite`, addFavorite);
-router.get(`/getFavorite`, getFavorite);
+router.post('/addfavorite', addFavorite);
+router.get('/getfavorite', getFavorite);
 
 module.exports = router;

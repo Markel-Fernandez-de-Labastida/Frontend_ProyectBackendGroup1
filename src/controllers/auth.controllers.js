@@ -19,10 +19,8 @@ const loginSend = async (req, res) => {
         password,
       }
     );
-    //console.log('ANSWER', answer)
     res.cookie("authToken", answer.token, {
-      httpOnly: true, // la cookie solo es accesible en el servidor
-      maxAge: 3600000, // expira en 1 hora
+      maxAge: 3600000
     });
     const role = answer.user.role_id;
     if (role === 1) {
@@ -71,10 +69,8 @@ const signupSend = async (req, res) => {
         password,
       }
     );
-    //console.log('ANSWER', answer)
     res.cookie("authToken", answer.token, {
-      httpOnly: true, // la cookie solo es accesible en el servidor
-      maxAge: 3600000, // expira en 1 hora
+      maxAge: 3600000
     });
     res.redirect("/user/dashboard");
   } catch (error) {

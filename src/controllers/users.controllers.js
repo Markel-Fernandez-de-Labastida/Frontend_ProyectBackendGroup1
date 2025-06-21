@@ -11,6 +11,35 @@ const searchView = (req, res) => {
   });
 }
 
+const movieDetailView = async (req, res) => {
+  const urlApiBase = process.env.URL_API_BASE;
+  const { id } = req.params;
+
+  //obtener el token
+  try {
+    const response = await consultFetch(
+      `${urlApiBase}/api/v1/movies/searchId`,
+      'POST',
+      {
+        id_movie: id
+      },
+      {
+        //  auten.......:token,
+      }
+    );
+    console.log('RESPONSE BY ID:', response)
+    if (response.ok) {
+      res.render('user/movieDetail', {
+        movie: response.data,
+        errorMsg: ''
+      });
+    }
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 const getMovieTitle = async (req, res) => {
   const urlApiBase = process.env.URL_API_BASE;
   const { title } = req.body;
@@ -85,6 +114,7 @@ const getFavorite = async (req, res) => {
 module.exports = {
   dashboardView,
   searchView,
+  movieDetailView,
   getMovieTitle,
   addFavorite,
   getFavorite,
