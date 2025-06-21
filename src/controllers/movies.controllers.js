@@ -19,12 +19,12 @@ const editMovieView = async (req, res) => {
       res.render('admin/editMovie', {
         movie: response.data,
       })
-    } else {
-      res.status(404).send("Película no encontrada");
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send("Error al obtener los datos de la película");
+    return res.render("admin/editMovie", {
+        errorMsg: error.msg,
+      });
   }
 }
 
@@ -49,7 +49,9 @@ const getAllMovies = async (req, res) => {
     }
   } catch (error) {
     console.log('Error en getAllMovies:', error);
-    res.status(500).send('Error al obtener las películas');
+    return res.render("admin/movies", {
+        errorMsg: error.msg,
+      });
   }
 };
 
@@ -83,22 +85,6 @@ const getMovieId = async (req, res) => {
   }
 };
 
-const getMovieTitle = async (req, res) => {
-  const urlApiBase = process.env.URL_API_BASE;
-  const { title } = req.body;
-  try {
-    const body = { title };
-    const response = await consultFetch(
-      `${urlApiBase}/api/v1/movies/search`,
-      `POST`,
-      body
-    );
-    console.log("getMovie: ", getMovie);
-    //return response;
-  } catch (error) {
-    return error;
-  }
-};
 
 const addMovie = async (req, res) => {
   const urlApiBase = process.env.URL_API_BASE;
@@ -226,7 +212,6 @@ module.exports = {
   editMovieView,
   getAllMovies,
   getMovieId,
-  getMovieTitle,
   addMovie,
   updateMovie,
   deleteMovie,

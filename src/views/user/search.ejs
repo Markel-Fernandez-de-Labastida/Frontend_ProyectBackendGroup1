@@ -1,0 +1,40 @@
+<!-- search.ejs -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Películas</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <main>
+        <h2>Buscar una película:</h2>
+
+        <form action="/user/search" method="POST" novalidate>
+            <input type="text" name="title" placeholder="Buscar película" required>
+            <button type="submit">Enviar</button>
+        </form>
+
+        <section id="searchResults">
+            <% if (movies && movies.length > 0) { %>
+                <h3>Resultados de la búsqueda:</h3>
+                <div class="movie-cards">
+                    <% movies.forEach(movie => { %>
+                        <div class="movie-card">
+                            <div>
+                                <img src="<%= movie.image_url %>" alt="<%= movie.title %>">
+                            </div>
+                            <a href="/user/search/<%=movie.title%>"><%= movie.title %></a>
+                            <p><%= movie.year_movie %> | <%= movie.name_genre %></p>
+                            <p><%= movie.synopsis %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } else{ %>
+                <p><%= errorMsg %></p>
+            <% } %>
+        </section>
+    </main>
+</body>
+</html>
