@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/movies.controllers.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/movies.controllers.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { consultFetch } = require("../utils/consultFetch");
+
+/**
+ * Función que renderiza la vista de crear película
+ * @param {Object} req Requerimiento
+ * @param {Object} res Respuesta
+ */
+const createMovieView = (req, res) => {
+  res.render('admin/createMovie')
+}
+
+/**
+ * Función que renderiza la vista de editar película según su id.
+ * @param {Object} req Requerimiento
+ * @param {Object} res Respuesta
+ * @returns Renderiza la vista de editar película con los campos autorellenados
+ */
+const editMovieView = async (req, res) => {
+  const urlApiBase = process.env.URL_API_BASE;
+  const { id } = req.params;
+  const token = req.cookies.authToken;
+  try {
+    const response = await consultFetch(`${urlApiBase}/api/v1/movies/searchId`,
+      'POST',
+      {
+        id_movie: id
+      },
+      {
+        'Authorization': `Bearer ${token}`
+      }
+    );
+    if (response.ok) {
+      res.render('admin/editMovie', {
+        movie: response.data,
+      })
+    }
+  } catch (error) {
+    console.log(error);
+    return res.render("admin/editMovie", {
+      errorMsg: error.msg,
+    });
+  }
+}
+
+/**
+ * Función para obtener todas las películas almacenadas
+ * @param {Object} req Requerimiento
+ * @param {Object} res Respuesta
+ * @returns Renderiza la vista del administrador para gestionar películas
+ */
+const getAllMovies = async (req, res) => {
+  const urlApiBase = process.env.URL_API_BASE;
+ const token = req.cookies.authToken;
+  try {
+    const response = await consultFetch(
+      `${urlApiBase}/api/v1/movies/getAllMovies`,
+      {},
+      {
+        "Authorization": `Bearer ${token}`
+      }
+    );
+    if (response.ok) {
+      res.render('admin/movies', {
+        movies: response.data
+      })
+    }
+  } catch (error) {
+    console.log('Error en getAllMovies:', error);
+    return res.render("admin/movies", {
+      errorMsg: error.msg,
+    });
+  }
+};
+
+
+
+/**
+ * Función para añadir una película
+ * @param {Object} req Requerimiento
+ * @param {Object} res Respuesta
+ * @returns Crea una película nueva y redirige al formulario para crear otra película
+ */
+const addMovie = async (req, res) => {
+  const urlApiBase = process.env.URL_API_BASE;
+  const {
+    title,
+    year_movie,
+    director,
+    genre_id,
+    duration,
+    synopsis,
+    image_url,
+  } = req.body;
+  const token = req.cookies.authToken;
+  try {
+    const response = await consultFetch(
+      `${urlApiBase}/api/v1/movies/createMovie`,
+      'POST',
+      {
+        title,
+        year_movie,
+        director,
+        genre_id,
+        duration,
+        synopsis,
+        image_url
+      },
+      {
+        'Authorization': `Bearer ${token}`
+      }
+    );
+    res.redirect('/admin/createmovie');
+  } catch (error) {
+    console.log(error);
+    if (error.status === 401) {
+      return res.render("admin/createMovie", {
+        errorMsg: error.msg,
+      });
+    } else if (error.status === 403) {
+      return res.render("admin/createMovie", {
+        errorMsg: error.msg,
+      });
+    } else if (error.status === 400) {
+      return res.render("admin/createMovie", {
+        errorMsg: error.msg,
+      });
+    } else {
+      return res.render("admin/createMovie", {
+        errorMsg: error.msg,
+      });
+    }
+  }
+};
+
+/**
+ * Función para actualizar una película
+ * @param {Object} req Requerimiento
+ * @param {Object} res Respuesta
+ * @returns Edita una película según su id
+ */
+const updateMovie = async (req, res) => {
+  const urlApiBase = process.env.URL_API_BASE;
+  const { id_movie } = req.param;
+  const {
+    title,
+    year_movie,
+    director,
+    genre_id,
+    duration,
+    synopsis,
+    image_url,
+  } = req.body;
+  const token = req.cookies.authToken;
+  try {
+    const response = await consultFetch(
+      `${urlApiBase}/api/v1/movies/editMovie/${id_movie}`,
+      'PUT',
+      {
+        title,
+        year_movie,
+        director,
+        genre_id,
+        duration,
+        synopsis,
+        image_url
+      },
+      {
+        'Authorization': `Bearer ${token}`
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+/**
+ * Función que envía los datos para eliminar una película 
+ * @param {Object} req Requerimiento
+ * @param {Object} res Respuesta
+ * @returns Elimina una película según su id
+ */
+const deleteMovie = async (req, res) => {
+  const urlApiBase = process.env.URL_API_BASE;
+  const { id_movie } = req.body;
+  const token = req.cookies.authToken;
+  try {
+    const response = await consultFetch(
+      `${urlApiBase}/api/v1/movies/removeMovie`,
+      'DELETE',
+      {
+        id: id_movie
+      },
+      {
+        'Authorization': `Bearer ${token}`
+      }
+    );
+    if (response.ok) {
+      res.redirect('/admin/movies')
+    }
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+};
+
+/**
+ * Función que envía los datos para eliminar una película de favoritos
+ * @param {Object} req Requerimiento
+ * @param {Object} res Respuesta
+ * @returns Elimina una película de favoritos
+ */
+const deleteFavorites = async (req, res) => {
+  const urlApiBase = process.env.URL_API_BASE;
+  const { id_user, id_movie } = req.body;
+  const token = req.cookies.authToken;
+  try {
+    const response = await consultFetch(
+      `${urlApiBase}/api/v1/movies/removeFavorites`,
+      `DELETE`,
+      {
+        id_user,
+        id_movie
+      },
+      {
+        'Authorization': `Bearer ${token}`
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
+module.exports = {
+  createMovieView,
+  editMovieView,
+  getAllMovies,
+  addMovie,
+  updateMovie,
+  deleteMovie,
+  deleteFavorites,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addFavorite">addFavorite</a></li><li><a href="global.html#addMovie">addMovie</a></li><li><a href="global.html#app">app</a></li><li><a href="global.html#createMovieView">createMovieView</a></li><li><a href="global.html#dashboardView">dashboardView</a></li><li><a href="global.html#deleteFavorites">deleteFavorites</a></li><li><a href="global.html#deleteMovie">deleteMovie</a></li><li><a href="global.html#editMovieView">editMovieView</a></li><li><a href="global.html#express">express</a></li><li><a href="global.html#getAllMovies">getAllMovies</a></li><li><a href="global.html#getFavorite">getFavorite</a></li><li><a href="global.html#getMovieTitle">getMovieTitle</a></li><li><a href="global.html#logOutUser">logOutUser</a></li><li><a href="global.html#loginSend">loginSend</a></li><li><a href="global.html#loginView">loginView</a></li><li><a href="global.html#movieDetailView">movieDetailView</a></li><li><a href="global.html#port">port</a></li><li><a href="global.html#searchView">searchView</a></li><li><a href="global.html#signupSend">signupSend</a></li><li><a href="global.html#signupView">signupView</a></li><li><a href="global.html#updateMovie">updateMovie</a></li><li><a href="global.html#validateJWT">validateJWT</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Jun 22 2025 21:06:26 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
