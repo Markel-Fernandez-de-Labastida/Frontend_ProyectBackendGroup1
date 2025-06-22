@@ -10,6 +10,9 @@ const {
 
 const router = Router();
 
+/**
+ * Rutas de autenticación
+ */
 router.get('/', loginView);
 router.post('/login', loginSend);
 router.get('/signup', signupView);

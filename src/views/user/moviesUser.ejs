@@ -2,16 +2,10 @@
 
     <body>
         <main>
-            <section class="container-search">
-                <h2>Buscar una película</h2>
-                <form action="/user/search" method="POST" novalidate>
-                    <input type="text" name="title" placeholder="Buscar película" required>
-                    <button type="submit" class="btn-submit">Buscar</button>
-                </form>
-            </section>
+                <h2>Mis películas</h2>
 
             <section class="search-movies">
-                <% if (movies && movies.length> 0) { %>
+                <% if (movies && movies.length > 0) { %>
                     <div class="movie-cards">
                         <% movies.forEach(movie=> { %>
                             <div class="movie-card">
@@ -27,9 +21,9 @@
                                 <p class="synopsis-paragraph">
                                     <%= movie.synopsis %>
                                 </p>
-                                <form action="/user/addfavorite" method="POST" class="favorite-form">
+                                <form action="/user/movies" method="POST" class="favorite-form">
                                     <input type="hidden" name="movieId" value="<%= movie.id_movie %>">
-                                    <button type="submit" class="btn-submit">Añadir a Favoritos</button>
+                                    <button type="submit" class="btn-submit">Eliminar de favoritos</button>
                                 </form>
                             </div>
                             <% }) %>

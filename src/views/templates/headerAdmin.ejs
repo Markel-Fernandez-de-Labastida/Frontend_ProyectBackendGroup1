@@ -18,10 +18,15 @@
                 <div class="hamburger-line"></div>
                 <div class="hamburger-line"></div>
             </button>
-                <nav class="nav-menu" id="navMenu">
+            <nav class="nav-menu" id="navMenu">
                 <ul>
-                    <li><a href="/logout">Cerrar sesión</a></li>
+                    <li>
+                        <form action="/logout" method="POST">
+                            <button type="submit" class="logout-btn">Cerrar sesión</button>
+                        </form>
+                    </li>
                 </ul>
+
             </nav>
         </div>
     </header>

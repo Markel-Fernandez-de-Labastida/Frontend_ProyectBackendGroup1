@@ -4,7 +4,7 @@
         <section class="container-manage-movies">
             <h1>Mis películas</h1>
             <article class="container-create-movie">
-                <a href="/admin/createMovie" class="btn-create">Crear película</a>
+                <a href="/admin/createmovie" class="btn-create">Crear película</a>
             </article>
 
             <section class="search-movies">
@@ -24,11 +24,11 @@
                                 <%= movie.synopsis %>
                             </p>
                             <div class="btn-group">
-                                <form action="/admin/removeMovie" method="POST">
+                                <form action="/admin/removemovie" method="POST">
                                     <input type="hidden" name="id_movie" value="<%= movie.id_movie %>">
                                     <button type="submit" class="btn-delete">Eliminar</button>
                                 </form>
-                                <a href="/admin/editMovie/<%= movie.id_movie %>" class="btn-edit">Editar</a>
+                                <a href="/admin/editmovie/<%= movie.id_movie %>" class="btn-edit">Editar</a>
                             </div>
                         </div>
                         <% }) %>

@@ -8,15 +8,20 @@ const {
   createMovieView,
   editMovieView,
 } = require("../controllers/movies.controllers");
+const { validateJWT } = require("../middleware/verifyToken");
 
 const router = Router();
 
-router.get('/movies', getAllMovies);
-router.get('/editmovie/:id', editMovieView)
+/**
+ * Rutas de las gestiones de las películas
+ */
+
+router.get('/movies', [validateJWT], getAllMovies);
+router.get('/editmovie/:id', [validateJWT], editMovieView);
+
+
 router.post("/removemovie", deleteMovie);
-
-
-router.get('/createmovie', createMovieView);
+router.get('/createmovie', [validateJWT], createMovieView);
 router.post("/createmovie", addMovie);
 router.put("/editmovie/:id", updateMovie);
 router.delete("/deletefavorites", deleteFavorites);

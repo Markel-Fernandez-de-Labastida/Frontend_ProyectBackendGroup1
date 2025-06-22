@@ -86,6 +86,26 @@ header {
     text-decoration: underline;
 }
 
+.logout-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    text-decoration: none;
+    font: inherit;
+    cursor: pointer;
+}
+.logout-btn-admin {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #fff;
+    text-decoration: none;
+    font: inherit;
+    cursor: pointer;
+    text-align: right;
+}
+
 @media (min-width: 992px) {
     .nav-menu {
         top: 10%;
