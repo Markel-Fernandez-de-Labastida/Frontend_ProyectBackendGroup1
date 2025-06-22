@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - MovieApp</title>
+    <title>MovieApp</title>
     <link rel="stylesheet" href="/main.css">
 </head>
 
 <body>
-    <div class="container-form">
+    <main class="container-center">
         <h1>MovieApp</h1>
+        <div class="container-form">
+            <p class="form-p">Registrarse</p>
 
         <form action="/register" method="POST" novalidate>
             <div class="input-group">
@@ -25,18 +27,18 @@
             </div>
 
             <% if (errorMsg) { %>
-                <p>
+                <p class="error-msg">
                     <%= errorMsg %>
                 </p>
             <% } %>
 
-            <button type="submit" class="btn">Sign up</button>
+            <button type="submit" class="btn-submit">Registrarse</button>
 
-            <div class="auth-link">
-                ¿Tienes cuenta? <a href="/">Login up</a>
-            </div>
+            <p>¿Tienes cuenta? <a href="/">Iniciar sesión</a></p>
         </form>
     </div>
+    </main>
+    
 </body>
 
 </html>

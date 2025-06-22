@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - MovieApp</title>
+    <title>MovieApp</title>
     <link rel="stylesheet" href="/main.css">
 </head>
 
 <body>
-    <div class="container-form">
+    <main class="container-center">
         <h1>MovieApp</h1>
+        <div class="container-form">
+        <p class="form-p">Iniciar sesión</p>
         <form action="/login" method="POST" novalidate>
             <div class="input-group">
                 <input type="email" id="email" name="email" required placeholder="Email">
@@ -21,18 +23,17 @@
             </div>
 
             <% if (errorMsg) { %>
-                <p>
+                <p class="error-msg">
                     <%= errorMsg %>
                 </p>
             <% } %>
 
-            <button type="submit" class="btn">Log in</button>
+            <button type="submit" class="btn-submit">Iniciar sesión</button>
         </form>
 
-        <div class="auth-link">
-            ¿No tienes cuenta? <a href="/signup">Sign up</a>
+        <p>¿No tienes cuenta? <a href="/signup">Regístrate</a></p>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>

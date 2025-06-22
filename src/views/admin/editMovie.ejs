@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar una película</title>
-    <link rel="stylesheet" href="/main.css">
-</head>
+<%- include('../templates/headerAdmin') %>
 
 <body>
-    <div class="container-movies">
-        <h1>Editar una película</h1>
+    <section class="container-center">
+        <div class="container-movie">
+            <p class="form-p">Editar película</p>
         <form action="admin/sendEditMovie" method="POST" novalidate>
             <div>
                 <input type="hidden" id="id_movie" name="id_movie" value="<%=movie.id_movie%>" required>
@@ -44,9 +37,10 @@
                 <input type="file" id="image_url" name="image_url" value="<%=movie.image_url%>"required>
             </div>
 
-            <button type="submit" class="btn">Editar película</button>
+            <button type="submit" class="btn-submit">Editar película</button>
         </form>
     </div>
+    </section>
 </body>
 
 </html>

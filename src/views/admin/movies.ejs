@@ -1,42 +1,40 @@
-<!DOCTYPE html>
-<html lang="es">
+<%- include('../templates/headerAdmin') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-    <link rel="stylesheet" href="/main.css">
-</head>
-
-<body>
-    <section>
-        <h1>Mis películas</h1>
-        <a href="/admin/createMovie" class="btn">Crear película</a>
-         
-        <% movies.forEach(movie => { %>
-            <article class="film-card">
-                <div>
-                    <img src="<%= movie.image_url %>" class="card-image">
-                </div>
-                <div class="flex">
-                    <ul>
-                        <li><%= movie.title %></li>
-                        <li><%= movie.duration %></li>
-                        <li><%= movie.year_movie %></li>
-                        <li><%= movie.director %></li>
-                        <li class="synopsis-overflow"><%= movie.synopsis %></li>
-                    </ul>
-                </div>
-                <div class="btn-group">
-            <a href="/admin/editMovie/<%= movie.id_movie %>" class="btn">Editar</a>
-            <form action="/admin/removeMovie" method="POST">
-                <input type="hidden" name="id_movie" value="<%= movie.id_movie %>">
-                <button type="submit" class="btn">Eliminar</button>
-            </form>
-        </div>
+    <body>
+        <section class="container-manage-movies">
+            <h1>Mis películas</h1>
+            <article class="container-create-movie">
+                <a href="/admin/createMovie" class="btn-create">Crear película</a>
             </article>
-        <% }) %>
-    </section>
-</body>
 
-</html>
+            <section class="search-movies">
+                <div class="movie-cards">
+                    <% movies.forEach(movie=> { %>
+                        <div class="movie-card">
+                            <!--  <div>
+                                    <img src=" movie.image_url %>" alt="movie.title %>">
+                                </div> -->
+                            <p class="movie-title">
+                                <%= movie.title %>
+                            </p>
+                            <p>
+                                <%= movie.year_movie %> | <%= movie.name_genre%> | <%= movie.director%>
+                            </p>
+                            <p class="synopsis-paragraph">
+                                <%= movie.synopsis %>
+                            </p>
+                            <div class="btn-group">
+                                <form action="/admin/removeMovie" method="POST">
+                                    <input type="hidden" name="id_movie" value="<%= movie.id_movie %>">
+                                    <button type="submit" class="btn-delete">Eliminar</button>
+                                </form>
+                                <a href="/admin/editMovie/<%= movie.id_movie %>" class="btn-edit">Editar</a>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+
+            </section>
+    </body>
+
+    </html>
