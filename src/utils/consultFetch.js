@@ -9,7 +9,7 @@ const consultFetch = async (url, method = "GET", body = {}, header = {}) => {
       headers: {
         ...header,
         "Content-Type": "application/json",
-      },
+      }
     };
   } else if (method === "DELETE" || method === "GET") {
     option = {
@@ -17,7 +17,7 @@ const consultFetch = async (url, method = "GET", body = {}, header = {}) => {
       headers: {
         ...header,
         "Content-Type": "application/json",
-      },
+      }
     };
   }
   try {

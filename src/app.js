@@ -32,8 +32,11 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded())
+
+// parse application/json
+app.use(express.json())
 app.use(cookieParser());
 
 

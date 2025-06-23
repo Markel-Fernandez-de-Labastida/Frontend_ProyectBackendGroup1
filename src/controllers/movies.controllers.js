@@ -50,7 +50,7 @@ const editMovieView = async (req, res) => {
  */
 const getAllMovies = async (req, res) => {
   const urlApiBase = process.env.URL_API_BASE;
- const token = req.cookies.authToken;
+  const token = req.cookies.authToken;
   try {
     const response = await consultFetch(
       `${urlApiBase}/api/v1/movies/getAllMovies`,
@@ -82,6 +82,7 @@ const getAllMovies = async (req, res) => {
  */
 const addMovie = async (req, res) => {
   const urlApiBase = process.env.URL_API_BASE;
+  // console.log(req.body)
   const {
     title,
     year_movie,
@@ -93,6 +94,7 @@ const addMovie = async (req, res) => {
   } = req.body;
   const token = req.cookies.authToken;
   try {
+
     const response = await consultFetch(
       `${urlApiBase}/api/v1/movies/createMovie`,
       'POST',
@@ -109,7 +111,7 @@ const addMovie = async (req, res) => {
         'Authorization': `Bearer ${token}`
       }
     );
-    res.redirect('/admin/createmovie');
+    res.redirect('/admin/movies');
   } catch (error) {
     console.log(error);
     if (error.status === 401) {
@@ -117,15 +119,15 @@ const addMovie = async (req, res) => {
         errorMsg: error.msg,
       });
     } else if (error.status === 403) {
-      return res.render("admin/createMovie", {
+      res.render("admin/createMovie", {
         errorMsg: error.msg,
       });
     } else if (error.status === 400) {
-      return res.render("admin/createMovie", {
+      res.render("admin/createMovie", {
         errorMsg: error.msg,
       });
     } else {
-      return res.render("admin/createMovie", {
+      res.render("admin/createMovie", {
         errorMsg: error.msg,
       });
     }
@@ -200,7 +202,7 @@ const deleteMovie = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    return error
+    //sreturn error
   }
 };
 

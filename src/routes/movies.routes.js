@@ -9,6 +9,7 @@ const {
   editMovieView,
 } = require("../controllers/movies.controllers");
 const { validateJWT } = require("../middleware/verifyToken");
+const { verifyRole } = require("../middleware/verifyRole");
 
 const router = Router();
 
@@ -21,7 +22,7 @@ router.get('/editmovie/:id', [validateJWT], editMovieView);
 
 
 router.post("/removemovie", deleteMovie);
-router.get('/createmovie', [validateJWT], createMovieView);
+router.get('/createmovie', [validateJWT/* , verifyRole('admin') */], createMovieView);
 router.post("/createmovie", addMovie);
 router.put("/editmovie/:id", updateMovie);
 router.delete("/deletefavorites", deleteFavorites);
